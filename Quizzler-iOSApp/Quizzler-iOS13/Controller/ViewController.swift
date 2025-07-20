@@ -10,40 +10,32 @@ import UIKit
 
 class ViewController: UIViewController {
     // MARK: - Properties.
-    
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
     @IBOutlet weak var questionProgressBar: UIProgressView!
     @IBOutlet weak var scoreLabel: UILabel!
-    
     var quizbrain = QuizBrain()
     
-    // MARK: - viewDidLoad
+    // MARK: - viewDidLoad.
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    // MARK: - viewWillAppear.
+    override func viewWillAppear(_ animated: Bool) {
         updateUI()
     }
     
-    // MARK: - checkAnswerButton
+    // MARK: - checkAnswerButton.
     @IBAction func checkAnswerButton(_ sender: UIButton) {
         
         let userButton = sender.currentTitle ?? ""
-        
-        // check question is right or wrong.
-        if  quizbrain.checkQuestion(answer: userButton) {
-            sender.backgroundColor = UIColor.green.withAlphaComponent(0.7)
-        }
-        
-        else {
-            sender.backgroundColor = UIColor.red.withAlphaComponent(0.7)
-        }
-        
+        sender.backgroundColor =  quizbrain.checkQuestion(answer: userButton) ? UIColor.green.withAlphaComponent(0.7):UIColor.red.withAlphaComponent(0.7)
         // check is value out if index.
         quizbrain.checkIndexValue()
-        
         updateUI()
-        
     }
     
     //  MARK: - showAllQuestion Function show  different question.
