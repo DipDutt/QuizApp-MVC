@@ -29,14 +29,7 @@ struct QuizBrain {
     
     // MARK: - checkQuestion
     mutating func checkQuestion(answer:String)-> Bool {
-        if answer == quizArray[indexValue].answer {
-            score += 1
-            return true
-        }
-        else {
-            return false
-        }
-        
+       return answer == quizArray[indexValue].answer ? { score += 1; return true }() : false
     }
     
     // MARK: - showQuestionText
@@ -53,7 +46,7 @@ struct QuizBrain {
     // MARK: - checkIndexValue
     
     mutating func checkIndexValue() {
-        indexValue = indexValue < quizArray.count - 1 ? indexValue : 0
+        indexValue = indexValue < quizArray.count - 1 ? indexValue + 1 : 0
         score = indexValue == 0 ? 0 : score
     }
     
