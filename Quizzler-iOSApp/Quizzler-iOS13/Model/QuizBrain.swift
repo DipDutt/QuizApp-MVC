@@ -53,14 +53,8 @@ struct QuizBrain {
     // MARK: - checkIndexValue
     
     mutating func checkIndexValue() {
-        if indexValue < quizArray.count - 1 {
-            indexValue += 1
-        }
-        
-        else {
-            indexValue = 0
-            score = 0
-        }
+        indexValue = indexValue < quizArray.count - 1 ? indexValue : 0
+        score = indexValue == 0 ? 0 : score
     }
     
     // MARK: - updateScore
